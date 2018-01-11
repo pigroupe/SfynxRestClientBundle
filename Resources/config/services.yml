@@ -1,0 +1,33 @@
+parameters:
+    sfynx_rest_client.api.class:                      Sfynx\RestClientBundle\Http\Rest\RestApiClientBridge
+    sfynx_rest_client.api_implementor.class:          Sfynx\RestClientBundle\Http\Rest\RestApiClientBasicImplementor
+    sfynx_rest_client.http_logger.class:              Sfynx\RestClientBundle\Logger\HttpDebugStack
+    sfynx_rest_client.data_collector.class:           Sfynx\RestClientBundle\DataCollector\ApiClientDataCollector
+
+services:
+    sfynx_rest_client.api:
+        class: '%sfynx_rest_client.api.class%'
+        arguments: [null, null]
+        abstract:  true
+
+    sfynx_rest_client.api_implementor:
+        class: '%sfynx_rest_client.api_implementor.class%'
+        arguments:
+            - '@sfynx.circuitbreaker'
+            - '@service_container'
+        abstract: true
+        public: false
+
+    sfynx_rest_client.http_logger:
+        class: '%sfynx_rest_client.http_logger.class%'
+        arguments:
+            - '@service_container'
+        public: false
+
+    sfynx_rest_client.data_collector:
+        class:     '%sfynx_rest_client.data_collector.class%'
+        arguments:
+            - '@sfynx_rest_client.http_logger'
+        public: false
+        tags:
+            - { name: data_collector, template: 'DaRestClientBundle:Collector:api', id: api }

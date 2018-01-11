@@ -1,0 +1,11 @@
+# application
+vendor
+phpunit.xml
+composer.phar
+composer.lock
+
+#
+.idea
+
+# Gedit temp files
+*~
