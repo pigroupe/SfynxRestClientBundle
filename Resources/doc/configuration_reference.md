@@ -1,4 +1,4 @@
-DaRestClientBundle Configuration Reference
+SfynxRestClientBundle Configuration Reference
 =========================================
 
 

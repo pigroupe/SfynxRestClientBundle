@@ -30,4 +30,4 @@ services:
             - '@sfynx_rest_client.http_logger'
         public: false
         tags:
-            - { name: data_collector, template: 'DaRestClientBundle:Collector:api', id: api }
+            - { name: data_collector, template: 'SfynxRestClientBundle:Collector:api', id: api }

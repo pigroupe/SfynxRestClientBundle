@@ -1,5 +1,5 @@
 {
-    "name": "sfynx-project/rest-client-bundle",
+    "name": "sfynx/rest-client-bundle",
     "target-dir": "Sfynx/RestClientBundle",
     "type": "symfony-bundle",
     "description": "SfynxRestClientBundle is a Symfony2's bundle allowing to discuss in a simple and secure way with an API.",

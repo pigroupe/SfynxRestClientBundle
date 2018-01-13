@@ -21,6 +21,9 @@ use Sfynx\RestClientBundle\Logger\HttpLoggerInterface;
  */
 class ApiClientDataCollector extends DataCollector
 {
+    /**
+     * @var HttpLoggerInterface
+     */
     protected $logger;
 
     /**
