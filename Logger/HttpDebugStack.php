@@ -104,24 +104,24 @@ class HttpDebugStack implements HttpLoggerInterface
         $this->queries[$id]['cacheLifetime']   = $cacheLifetime;
 
         if (null !== $this->logger) {
-            $this->logger->info(sprintf('DaApiClient [%s] Request', $id), array(
+            $this->logger->info(sprintf('SfynxApiClient [%s] Request', $id), array(
                 'requestUrl'         => $this->queries[$id]['requestUrl'],
                 'requestMethod'      => $this->queries[$id]['requestMethod'],
                 'requestQueryString' => $this->queries[$id]['requestQueryString']
             ));
-            $this->logger->debug(sprintf('DaApiClient [%s] Request debug', $id), array(
+            $this->logger->debug(sprintf('SfynxApiClient [%s] Request debug', $id), array(
                 'requestHeaders'     => $this->queries[$id]['requestHeaders']
             ));
-            $this->logger->info(sprintf('DaApiClient [%s] Response', $id), array(
+            $this->logger->info(sprintf('SfynxApiClient [%s] Response', $id), array(
                 'responseCode'       => $this->queries[$id]['responseCode'],
                 'isCached'           => $this->queries[$id]['isCached'],
                 'cacheLifetime'      => $this->queries[$id]['cacheLifetime']
             ));
-            $this->logger->debug(sprintf('DaApiClient [%s] Response debug', $id), array(
+            $this->logger->debug(sprintf('SfynxApiClient [%s] Response debug', $id), array(
                 'responseHeaders'    => $this->queries[$id]['responseHeaders'],
                 'responseContent'    => $this->queries[$id]['responseContent']
             ));
-            $this->logger->info(sprintf('DaApiClient [%s] Execution time', $id), array(
+            $this->logger->info(sprintf('SfynxApiClient [%s] Execution time', $id), array(
                 'executionTime'      => sprintf('%.2f ms', $this->queries[$id]['executionMS'])
             ));
         }

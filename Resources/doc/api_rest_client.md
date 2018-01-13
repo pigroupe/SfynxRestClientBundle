@@ -1,4 +1,4 @@
-DaRestClientBundle REST API Client
+SfynxRestClientBundle REST API Client
 =================================
 
 You can define your own REST API client to help your application(s) to communicate with your API.
