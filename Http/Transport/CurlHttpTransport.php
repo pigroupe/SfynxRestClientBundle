@@ -76,7 +76,7 @@ class CurlHttpTransport extends AbstractHttpTransport
     protected function buildHeaders()
     {
         $this->addHeader('User-Agent', $this->getUserAgent());
-        $headers = array();
+        $headers = [];
         foreach ($this->getHeaders() as $name => $value) {
             $headers[] = sprintf('%s: %s', $name, $value);
         }
@@ -249,7 +249,7 @@ class CurlHttpTransport extends AbstractHttpTransport
      */
     public static function parseHeaders($raw)
     {
-        $headers = array(); // $headers = [];
+        $headers = []; // $headers = [];
 
         foreach (explode("\n", $raw) as $i => $h) {
             $h = explode(':', $h, 2);
@@ -279,7 +279,7 @@ class CurlHttpTransport extends AbstractHttpTransport
      *
      * @return array A compliant cUrl data.
      */
-    public static function http_build_query_for_curl($arrays, &$new = array(), $prefix = null)
+    public static function http_build_query_for_curl($arrays, &$new = [], $prefix = null)
     {
         if ($arrays instanceof \CURLFile) {
             $new[$prefix] = $arrays;

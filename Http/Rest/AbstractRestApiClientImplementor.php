@@ -221,7 +221,7 @@ abstract class AbstractRestApiClientImplementor implements RestApiClientImplemen
      * @param array $headers
      * @return array
      */
-    protected function initHeaders(array $headers = array())
+    protected function initHeaders(array $headers = [])
     {
         // API token.
         if ($this->hasSecurityToken() && !isset($headers['X-API-Security-Token'])) {

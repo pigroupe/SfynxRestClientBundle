@@ -34,7 +34,7 @@ class HttpDebugStack implements HttpLoggerInterface
      */
     public function __construct(ContainerInterface $container)
     {
-        $this->queries = array();
+        $this->queries = [];
         $this->start = null;
         $this->currentQuery = 0;
         $this->logger = null;
@@ -50,9 +50,7 @@ class HttpDebugStack implements HttpLoggerInterface
     }
 
     /**
-     * Get queries
-     *
-     * @return array logged queries
+     * {@inheritdoc}
      */
     public function getQueries()
     {
@@ -62,7 +60,7 @@ class HttpDebugStack implements HttpLoggerInterface
     /**
      * {@inheritdoc}
      */
-    public function startQuery($requestMethod, $requestUrl, array $requestHeaders = array(), $requestQueryString)
+    public function startQuery($requestMethod, $requestUrl, array $requestHeaders = [], $requestQueryString)
     {
         if (null !== $this->stopwatch) {
             $this->stopwatch->start('sfynx_rest_client', 'sfynx_rest_client');

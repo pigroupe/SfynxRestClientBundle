@@ -90,7 +90,7 @@ class RestApiClientBridge implements RestApiClientInterface
     /**
      * {@inheritdoc}
      */
-    public function get($path, $queryString = null, array $headers = array(), $noCache = false, $absolutePath = false)
+    public function get($path, $queryString = null, array $headers = [], $noCache = false, $absolutePath = false)
     {
         return $this->implementor->get($path, $queryString, $headers, $noCache, $absolutePath);
     }
@@ -98,7 +98,7 @@ class RestApiClientBridge implements RestApiClientInterface
     /**
      * {@inheritdoc}
      */
-    public function post($path, $queryString = null, array $headers = array())
+    public function post($path, $queryString = null, array $headers = [])
     {
         return $this->implementor->post($path, $queryString, $headers);
     }
@@ -106,7 +106,7 @@ class RestApiClientBridge implements RestApiClientInterface
     /**
      * {@inheritdoc}
      */
-    public function put($path, $queryString = null, array $headers = array())
+    public function put($path, $queryString = null, array $headers = [])
     {
         return $this->implementor->put($path, $queryString, $headers);
     }
@@ -114,7 +114,7 @@ class RestApiClientBridge implements RestApiClientInterface
     /**
      * {@inheritdoc}
      */
-    public function patch($path, $queryString = null, array $headers = array())
+    public function patch($path, $queryString = null, array $headers = [])
     {
         return $this->implementor->patch($path, $queryString, $headers);
     }
@@ -122,7 +122,7 @@ class RestApiClientBridge implements RestApiClientInterface
     /**
      * {@inheritdoc}
      */
-    public function delete($path, $queryString = null, array $headers = array())
+    public function delete($path, $queryString = null, array $headers = [])
     {
         return $this->implementor->delete($path, $queryString, $headers);
     }
@@ -130,7 +130,7 @@ class RestApiClientBridge implements RestApiClientInterface
     /**
      * {@inheritdoc}
      */
-    public function link($path, array $links, array $headers = array())
+    public function link($path, array $links, array $headers = [])
     {
         return $this->implementor->link($path, $links, $headers);
     }
@@ -138,9 +138,8 @@ class RestApiClientBridge implements RestApiClientInterface
     /**
      * {@inheritdoc}
      */
-    public function unlink($path, array $links, array $headers = array())
+    public function unlink($path, array $links, array $headers = [])
     {
         return $this->implementor->unlink($path, $links, $headers);
     }
-
 }

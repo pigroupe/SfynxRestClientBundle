@@ -92,7 +92,7 @@ class RestApiClientBasicImplementor extends AbstractRestApiClientImplementor
     /**
      * {@inheritdoc}
      */
-    public function get($path, $queryString = null, array $headers = array(), $noCache = false, $absolutePath = false)
+    public function get($path, $queryString = null, array $headers = [], $noCache = false, $absolutePath = false)
     {
         $path = self::addQueryString($path, $queryString);
 
@@ -102,7 +102,7 @@ class RestApiClientBasicImplementor extends AbstractRestApiClientImplementor
     /**
      * {@inheritdoc}
      */
-    public function post($path, $queryString = null, array $headers = array())
+    public function post($path, $queryString = null, array $headers = [])
     {
         return $this->send('POST', $path, $headers, $queryString);
     }
@@ -110,7 +110,7 @@ class RestApiClientBasicImplementor extends AbstractRestApiClientImplementor
     /**
      * {@inheritdoc}
      */
-    public function put($path, $queryString = null, array $headers = array())
+    public function put($path, $queryString = null, array $headers = [])
     {
         return $this->send('PUT', $path, $headers, $queryString);
     }
@@ -118,7 +118,7 @@ class RestApiClientBasicImplementor extends AbstractRestApiClientImplementor
     /**
      * {@inheritdoc}
      */
-    public function patch($path, $queryString = null, array $headers = array())
+    public function patch($path, $queryString = null, array $headers = [])
     {
         return $this->send('PATCH', $path, $headers, $queryString);
     }
@@ -126,7 +126,7 @@ class RestApiClientBasicImplementor extends AbstractRestApiClientImplementor
     /**
      * {@inheritdoc}
      */
-    public function delete($path, $queryString = null, array $headers = array())
+    public function delete($path, $queryString = null, array $headers = [])
     {
         return $this->send('DELETE', $path, $headers, $queryString);
     }
@@ -134,7 +134,7 @@ class RestApiClientBasicImplementor extends AbstractRestApiClientImplementor
     /**
      * {@inheritdoc}
      */
-    public function link($path, array $links, array $headers = array())
+    public function link($path, array $links, array $headers = [])
     {
         return $this->send('LINK', $path, $headers, null, $links);
     }
@@ -142,7 +142,7 @@ class RestApiClientBasicImplementor extends AbstractRestApiClientImplementor
     /**
      * {@inheritdoc}
      */
-    public function unlink($path, array $links, array $headers = array())
+    public function unlink($path, array $links, array $headers = [])
     {
         return $this->send('UNLINK', $path, $headers, null, $links);
     }
@@ -165,13 +165,12 @@ class RestApiClientBasicImplementor extends AbstractRestApiClientImplementor
     protected function send(
         $method,
         $path,
-        array $headers = array(),
+        array $headers = [],
         $queryString = null,
         array $links = null,
         $noCache = false,
         $absolutePath = false
-    )
-    {
+    ) {
         $headers = $this->initHeaders($headers);
         $transport = HttpTransportFactory::build(
             'curl',
@@ -199,17 +198,19 @@ class RestApiClientBasicImplementor extends AbstractRestApiClientImplementor
         if (!is_null($this->getCircuitBreakerName())) {
             $this->circuitBreaker->checkAvailable($this->getCircuitBreakerName());
         }
+
         try {
             $response = $transport->send();
 
             if (!is_null($this->getCircuitBreakerName())) {
                 $this->circuitBreaker->reportSuccess($this->getCircuitBreakerName());
             }
-        } /** @noinspection BadExceptionsProcessingInspection */ catch (Exception $e) {
+        } /** @noinspection BadExceptionsProcessingInspection */ catch (Exception $exception) {
             // This Exception is dependent of CircuitBreaker project.
 
             if (!is_null($this->getCircuitBreakerName())) {
                 $this->circuitBreaker->reportFailure($this->getCircuitBreakerName());
+                throw UnavailableServiceException::serviceCallFailure($this->getCircuitBreakerName());
             }
             if (
                 401 === $exception->getStatusCode() &&
@@ -220,7 +221,7 @@ class RestApiClientBasicImplementor extends AbstractRestApiClientImplementor
 
                 $response = $transport->send($noCache);
             } else {
-                throw UnavailableServiceException::serviceCallFailure($this->getCircuitBreakerName());
+                throw $exception;
             }
         }
 
