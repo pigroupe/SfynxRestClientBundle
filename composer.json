@@ -2,7 +2,7 @@
     "name": "sfynx-project/rest-client-bundle",
     "target-dir": "Sfynx/RestClientBundle",
     "type": "symfony-bundle",
-    "description": "SfynxRestClientBundle is a Symfony2's bundle allowing to discuss in a simple and secure way with an API.",
+    "description": "SfynxRestClientBundle is a Symfony's bundle allowing to discuss in a simple and secure way with an API.",
     "keywords": ["api", "client", "bundle", "sfynx", "symfony2", "symfony", "simple"],
     "homepage": "https://github.com/pigroupe/SfynxRestClientBundle",
     "license": "MIT",
