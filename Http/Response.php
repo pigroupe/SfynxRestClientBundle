@@ -140,7 +140,7 @@ class Response
      * @throws \InvalidArgumentException When the HTTP status code is not valid
      *
      */
-    public function __construct($url, $content = null, $status = 200, $headers = array())
+    public function __construct($url, $content = null, $status = 200, $headers = [])
     {
         $this->headers = new ResponseHeaderBag($headers);
         $this->setUrl($url);
@@ -166,7 +166,7 @@ class Response
      *
      * @return Response
      */
-    public static function create($url, $content = null, $status = 200, $headers = array())
+    public static function create($url, $content = null, $status = 200, $headers = [])
     {
         return new static($url, $content, $status, $headers);
     }
@@ -825,7 +825,7 @@ class Response
     public function getVary()
     {
         if (!$vary = $this->headers->get('Vary')) {
-            return array();
+            return [];
         }
 
         return is_array($vary) ? $vary : preg_split('/[\s,]+/', $vary);

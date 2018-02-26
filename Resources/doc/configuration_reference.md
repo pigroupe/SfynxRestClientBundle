@@ -9,6 +9,8 @@ Declare an API
 # app/config/config.yml
 
 sfynx_rest_client:
+    http_cacher: ~
+    log_enabled: true
     api:
         my_api_name:             # [Required] Api name, used to identify it in the container: 'sfynx_rest_client.api.my_api_name'
             endpoint_root:  ~    # [Required] The base url of your API (from which all path will be related to).

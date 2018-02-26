@@ -42,8 +42,8 @@ abstract class AbstractHttpTransport implements HttpTransportInterface
         $this->method      = null;
         $this->path        = null;
         $this->queryString = null;
-        $this->links       = array();
-        $this->headers     = array();
+        $this->links       = [];
+        $this->headers     = [];
         $this->cacher      = $cacher;
         $this->logger      = $logger;
     }

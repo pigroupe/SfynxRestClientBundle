@@ -26,7 +26,7 @@ interface HttpLoggerInterface
      *
      * @return int a log id
      */
-    public function startQuery($requestMethod, $requestUrl, array $requestHeaders = array(), $requestQueryString);
+    public function startQuery($requestMethod, $requestUrl, array $requestHeaders = [], $requestQueryString);
 
     /**
      * Mark the last started query as stopped. This can be used for timing of queries.
@@ -39,4 +39,11 @@ interface HttpLoggerInterface
      * @param integer $cacheLifetime   The cache lifetime
      */
     public function stopQuery($id, $responseCode, $responseHeaders, $responseContent, $isCached, $cacheLifetime = null);
+
+    /**
+     * Get queries
+     *
+     * @return array logged queries
+     */
+    public function getQueries();
 }
