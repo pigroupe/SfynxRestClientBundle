@@ -28,7 +28,7 @@
         "symfony/dependency-injection" : ">=2.1",
         "symfony/config" : ">=2.1",
         "doctrine/doctrine-cache-bundle": "~1.3",
-        "sfynx-project/tool-circuitbreaker-bundle": "~2.8.3"
+        "sfynx-project/tool-circuitbreaker-bundle": "^2.8"
     },
     "require-dev": {
         "phpunit/phpunit": "3.7.*"
