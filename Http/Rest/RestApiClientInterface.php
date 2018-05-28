@@ -11,6 +11,8 @@
 
 namespace Sfynx\RestClientBundle\Http\Rest;
 
+use Sfynx\RestClientBundle\Http\Response;
+
 /**
  * RestApiClientInterface
  *
@@ -35,7 +37,7 @@ interface RestApiClientInterface
      * @param boolean      $noCache      To force the request without check if a cache response exist.
      * @param boolean      $absolutePath To use absolute path instead of build it with api endpoint.
      *
-     * @return Sfynx\RestClientBundle\Http\Response
+     * @return Response
      *
      * @throw ApiHttpResponseException
      */
@@ -48,7 +50,7 @@ interface RestApiClientInterface
      * @param string|array $queryString The specific queryString to the webservice.
      * @param array        $headers     The optionnal headers.
      *
-     * @return Sfynx\RestClientBundle\Http\Response
+     * @return Response
      *
      * @throw ApiHttpResponseException
      */
@@ -61,7 +63,7 @@ interface RestApiClientInterface
      * @param string|array $queryString The specific queryString to the webservice.
      * @param array        $headers     The optionnal headers.
      *
-     * @return Sfynx\RestClientBundle\Http\Response
+     * @return Response
      *
      * @throw ApiHttpResponseException
      */
@@ -74,7 +76,7 @@ interface RestApiClientInterface
      * @param string|array $queryString The specific queryString to the webservice.
      * @param array        $headers     The optionnal headers.
      *
-     * @return Sfynx\RestClientBundle\Http\Response
+     * @return Response
      *
      * @throw ApiHttpResponseException
      */
@@ -87,7 +89,7 @@ interface RestApiClientInterface
      * @param string|array $queryString The specific queryString to the webservice.
      * @param array        $headers     The optionnal headers.
      *
-     * @return Sfynx\RestClientBundle\Http\Response
+     * @return Response
      *
      * @throw ApiHttpResponseException
      */
@@ -100,7 +102,7 @@ interface RestApiClientInterface
      * @param array  $links       Array of resources to link.
      * @param array  $headers     The optionnal headers.
      *
-     * @return Sfynx\RestClientBundle\Http\Response
+     * @return Response
      *
      * @throw ApiHttpResponseException
      */
@@ -113,7 +115,7 @@ interface RestApiClientInterface
      * @param array  $links       Array of resources to unlink.
      * @param array  $headers     The optionnal headers.
      *
-     * @return Sfynx\RestClientBundle\Http\Response
+     * @return Response
      *
      * @throw ApiHttpResponseException
      */
