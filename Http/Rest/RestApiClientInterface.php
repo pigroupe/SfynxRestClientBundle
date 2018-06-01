@@ -12,6 +12,7 @@
 namespace Sfynx\RestClientBundle\Http\Rest;
 
 use Sfynx\RestClientBundle\Http\Response;
+use Sfynx\RestClientBundle\Exception\ApiHttpResponseException;
 
 /**
  * RestApiClientInterface
@@ -39,7 +40,7 @@ interface RestApiClientInterface
      *
      * @return Response
      *
-     * @throw ApiHttpResponseException
+     * @throws ApiHttpResponseException
      */
     public function get($path, $queryString = null, array $headers = [], $noCache = false, $absolutePath = false);
 
@@ -52,7 +53,7 @@ interface RestApiClientInterface
      *
      * @return Response
      *
-     * @throw ApiHttpResponseException
+     * @throws ApiHttpResponseException
      */
     public function post($path, $queryString = null, array $headers = []);
 
@@ -65,7 +66,7 @@ interface RestApiClientInterface
      *
      * @return Response
      *
-     * @throw ApiHttpResponseException
+     * @throws ApiHttpResponseException
      */
     public function put($path, $queryString = null, array $headers = []);
 
@@ -78,7 +79,7 @@ interface RestApiClientInterface
      *
      * @return Response
      *
-     * @throw ApiHttpResponseException
+     * @throws ApiHttpResponseException
      */
     public function patch($path, $queryString = null, array $headers = []);
 
@@ -91,7 +92,7 @@ interface RestApiClientInterface
      *
      * @return Response
      *
-     * @throw ApiHttpResponseException
+     * @throws ApiHttpResponseException
      */
     public function delete($path, $queryString = null, array $headers = []);
 
@@ -104,7 +105,7 @@ interface RestApiClientInterface
      *
      * @return Response
      *
-     * @throw ApiHttpResponseException
+     * @throws ApiHttpResponseException
      */
     public function link($path, array $links, array $headers = []);
 
@@ -117,7 +118,7 @@ interface RestApiClientInterface
      *
      * @return Response
      *
-     * @throw ApiHttpResponseException
+     * @throws ApiHttpResponseException
      */
     public function unlink($path, array $links, array $headers = []);
 }
