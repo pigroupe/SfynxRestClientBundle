@@ -13,9 +13,10 @@ namespace Sfynx\RestClientBundle\Http\Transport;
 
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Doctrine\Common\Cache\Cache;
+use Sfynx\RestClientBundle\Http\Transport\Generalisation\Interfaces\HttpTransportInterface;
+use Sfynx\RestClientBundle\Http\Response;
 use Sfynx\RestClientBundle\Logger\HttpLoggerInterface;
 use Sfynx\RestClientBundle\Exception\ApiHttpResponseException;
-use Sfynx\RestClientBundle\Http\Response;
 
 /**
  * AbstractHttpTransport

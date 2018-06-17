@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Sfynx\RestClientBundle\Http\Transport;
+namespace Sfynx\RestClientBundle\Http\Transport\Generalisation\Interfaces;
 
 use Doctrine\Common\Cache\Cache;
 use Sfynx\RestClientBundle\Logger\HttpLoggerInterface;

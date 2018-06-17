@@ -9,10 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Sfynx\RestClientBundle\Http\Rest;
+namespace Sfynx\RestClientBundle\Http\Rest\Generalisation;
 
 use Doctrine\Common\Cache\Cache;
 use Sfynx\RestClientBundle\Logger\HttpLoggerInterface;
+use Sfynx\RestClientBundle\Http\Rest\Generalisation\Interfaces\RestApiClientImplementorInterface;
 
 /**
  * AbstractRestApiClientImplementor is an abstract class helping to

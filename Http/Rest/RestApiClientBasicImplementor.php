@@ -18,6 +18,7 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Sfynx\CircuitBreakerBundle\Exception\UnavailableServiceException;
 use Sfynx\CircuitBreakerBundle\Generalisation\CircuitBreakerInterface;
 use Sfynx\RestClientBundle\Http\Transport\HttpTransportFactory;
+use Sfynx\RestClientBundle\Http\Rest\Generalisation\AbstractRestApiClientImplementor;
 
 /**
  * RestApiClientBasicImplementor is a basic implementation for a REST API client.
