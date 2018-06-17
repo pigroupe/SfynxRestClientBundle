@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Sfynx\RestClientBundle\Http\Rest;
+namespace Sfynx\RestClientBundle\Http\Rest\Generalisation\Interfaces;
 
 use Sfynx\AuthCommonBundle\Security\AuthorizationRefresherInterface;
 use Doctrine\Common\Cache\Cache;

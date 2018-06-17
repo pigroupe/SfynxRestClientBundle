@@ -13,6 +13,8 @@ namespace Sfynx\RestClientBundle\Http\Rest;
 
 use Doctrine\Common\Cache\Cache;
 use Sfynx\RestClientBundle\Logger\HttpLoggerInterface;
+use Sfynx\RestClientBundle\Http\Rest\Generalisation\Interfaces\RestApiClientInterface;
+use Sfynx\RestClientBundle\Http\Rest\Generalisation\Interfaces\RestApiClientImplementorInterface;
 
 /**
  * RestApiClientBridge is the abstraction class of a bridge pattern allowing
@@ -34,7 +36,7 @@ class RestApiClientBridge implements RestApiClientInterface
      * Constructor.
      *
      * @param RestApiClientImplementorInterface $implementor
-     * @param array                             $configuration
+     * @param array $configuration
      */
     public function __construct(
         RestApiClientImplementorInterface $implementor,
@@ -61,7 +63,6 @@ class RestApiClientBridge implements RestApiClientInterface
     public function setCacher($cacher)
     {
         $this->implementor->setCacher($cacher);
-
         return $this;
     }
 
@@ -75,7 +76,6 @@ class RestApiClientBridge implements RestApiClientInterface
     public function setLogger($logger)
     {
         $this->implementor->setLogger($logger);
-
         return $this;
     }
 

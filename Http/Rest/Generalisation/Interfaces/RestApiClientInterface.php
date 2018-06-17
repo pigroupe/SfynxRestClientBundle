@@ -9,7 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Sfynx\RestClientBundle\Http\Rest;
+namespace Sfynx\RestClientBundle\Http\Rest\Generalisation\Interfaces;
+
+use Sfynx\RestClientBundle\Http\Response;
+use Sfynx\RestClientBundle\Exception\ApiHttpResponseException;
 
 /**
  * RestApiClientInterface
@@ -35,9 +38,9 @@ interface RestApiClientInterface
      * @param boolean      $noCache      To force the request without check if a cache response exist.
      * @param boolean      $absolutePath To use absolute path instead of build it with api endpoint.
      *
-     * @return Sfynx\RestClientBundle\Http\Response
+     * @return Response
      *
-     * @throw ApiHttpResponseException
+     * @throws ApiHttpResponseException
      */
     public function get($path, $queryString = null, array $headers = [], $noCache = false, $absolutePath = false);
 
@@ -48,9 +51,9 @@ interface RestApiClientInterface
      * @param string|array $queryString The specific queryString to the webservice.
      * @param array        $headers     The optionnal headers.
      *
-     * @return Sfynx\RestClientBundle\Http\Response
+     * @return Response
      *
-     * @throw ApiHttpResponseException
+     * @throws ApiHttpResponseException
      */
     public function post($path, $queryString = null, array $headers = []);
 
@@ -61,9 +64,9 @@ interface RestApiClientInterface
      * @param string|array $queryString The specific queryString to the webservice.
      * @param array        $headers     The optionnal headers.
      *
-     * @return Sfynx\RestClientBundle\Http\Response
+     * @return Response
      *
-     * @throw ApiHttpResponseException
+     * @throws ApiHttpResponseException
      */
     public function put($path, $queryString = null, array $headers = []);
 
@@ -74,9 +77,9 @@ interface RestApiClientInterface
      * @param string|array $queryString The specific queryString to the webservice.
      * @param array        $headers     The optionnal headers.
      *
-     * @return Sfynx\RestClientBundle\Http\Response
+     * @return Response
      *
-     * @throw ApiHttpResponseException
+     * @throws ApiHttpResponseException
      */
     public function patch($path, $queryString = null, array $headers = []);
 
@@ -87,9 +90,9 @@ interface RestApiClientInterface
      * @param string|array $queryString The specific queryString to the webservice.
      * @param array        $headers     The optionnal headers.
      *
-     * @return Sfynx\RestClientBundle\Http\Response
+     * @return Response
      *
-     * @throw ApiHttpResponseException
+     * @throws ApiHttpResponseException
      */
     public function delete($path, $queryString = null, array $headers = []);
 
@@ -100,9 +103,9 @@ interface RestApiClientInterface
      * @param array  $links       Array of resources to link.
      * @param array  $headers     The optionnal headers.
      *
-     * @return Sfynx\RestClientBundle\Http\Response
+     * @return Response
      *
-     * @throw ApiHttpResponseException
+     * @throws ApiHttpResponseException
      */
     public function link($path, array $links, array $headers = []);
 
@@ -113,9 +116,9 @@ interface RestApiClientInterface
      * @param array  $links       Array of resources to unlink.
      * @param array  $headers     The optionnal headers.
      *
-     * @return Sfynx\RestClientBundle\Http\Response
+     * @return Response
      *
-     * @throw ApiHttpResponseException
+     * @throws ApiHttpResponseException
      */
     public function unlink($path, array $links, array $headers = []);
 }
