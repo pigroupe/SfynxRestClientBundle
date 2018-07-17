@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This file is part of the Da Project.
  *
@@ -8,7 +7,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace Sfynx\RestClientBundle\Http\Rest;
 
 use Exception;
@@ -76,17 +74,17 @@ class RestApiClientBasicImplementor extends AbstractRestApiClientImplementor
      */
     public static function addQueryString($path, $queryString = null)
     {
-        if(null === $queryString) {
+        if (null === $queryString) {
             return $path;
         }
 
-        return sprintf("%s%s%s",
+        return \sprintf("%s%s%s",
             $path,
-            preg_match("#\?#", $path) ? (
-                preg_match("#\?$#", $path) ?
+            \preg_match("#\?#", $path) ? (
+                \preg_match("#\?$#", $path) ?
                 '' : '&'
             ) : '?',
-            is_array($queryString) ? http_build_query($queryString) : $queryString
+            \is_array($queryString) ? \http_build_query($queryString) : $queryString
         );
     }
 
@@ -184,10 +182,9 @@ class RestApiClientBasicImplementor extends AbstractRestApiClientImplementor
         }
 
         $transport
-            ->setMethod($method)
-            ->setPath($path)
-            ->setHeaders($headers)
-        ;
+        ->setMethod($method)
+        ->setPath($path)
+        ->setHeaders($headers);
 
         if (null !== $queryString) {
             $transport->setQueryString($queryString);
@@ -206,17 +203,13 @@ class RestApiClientBasicImplementor extends AbstractRestApiClientImplementor
             if (!is_null($this->getCircuitBreakerName())) {
                 $this->circuitBreaker->reportSuccess($this->getCircuitBreakerName());
             }
-        } /** @noinspection BadExceptionsProcessingInspection */ catch (Exception $exception) {
+        } catch (Exception $exception) {
             // This Exception is dependent of CircuitBreaker project.
-
             if (!is_null($this->getCircuitBreakerName())) {
                 $this->circuitBreaker->reportFailure($this->getCircuitBreakerName());
                 throw UnavailableServiceException::serviceCallFailure($this->getCircuitBreakerName());
             }
-            if (
-                401 === $exception->getStatusCode() &&
-                $this->container->hasParameter('sfynx_rest_client.authorization_refresher.jwt')
-            ) {
+            if ($this->container->hasParameter('sfynx_rest_client.authorization_refresher.jwt')) {
                 // Try to refresh the access token.
                 // TODO
 
