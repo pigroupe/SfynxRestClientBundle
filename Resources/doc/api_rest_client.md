@@ -1,12 +1,18 @@
-SfynxRestClientBundle REST API Client
-=================================
+# SfynxRestClientBundle REST API Client
 
 You can define your own REST API client to help your application(s) to communicate with your API.
 It allows you to create a specific bundle providing a reusable interface for all your applications.
 
+The following documents are available:
 
-How to use
-----------
+- [How to use](#how-to-use)
+- [Create your REST API client](#create-your-rest-api-client)
+- [Link your API client to a configured API](#link-your-api-client-to-a-configured-api)
+- [Redefine the implementation of the API client](#redefine-the-implementation-of-the-api-client)
+- [Use your API client](#use-your-api-client)
+
+## How to use
+
 ```php
 try {
     $api = $container->get('sfynx_rest_client.api.my_rest_api_name')
@@ -38,8 +44,7 @@ $status  = $api->unlink('/friends/{id}', array(...));
 ```
 
 
-Create your REST API client
-----------------------------
+## Create your REST API client
 
 First, you have to define a new class like this one:
 ``` php
@@ -67,8 +72,7 @@ service:
 ```
 
 
-Link your API client to a configured API
-----------------------------------------
+## Link your API client to a configured API
 
 ``` yaml
 # app/config/config.yml
@@ -82,9 +86,7 @@ sfynx_rest_client:
                 service: my_own.my_rest_api_client
 ```
 
-
-Redefine the implementation of the API client
----------------------------------------------
+## Redefine the implementation of the API client
 
 The parent service `sfynx_rest_client.api` is part of a bridge pattern.
 If you want to change the standard implementation for the API client, it is pretty easy.
@@ -117,9 +119,7 @@ sfynx_rest_client:
                 implementor: my_own.my_api_rest_client_implementor
 ```
 
-
-Use your API client
--------------------
+## Use your API client
 
 You are now able to use your API client.
 For instance, you could have a method like this:

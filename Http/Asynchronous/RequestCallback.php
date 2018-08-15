@@ -24,7 +24,7 @@ class RequestCallback
      */
     public function __construct(RequestInterface $request, ?callable $callback = NULL)
     {
-        if ($callback !== null && !is_callable($callback)) {
+        if ($callback !== null && !\is_callable($callback)) {
             throw new Exception('Invalid callback');
         }
 

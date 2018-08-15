@@ -68,7 +68,7 @@ class AsyncRequest
      */
     public function count(): int
     {
-        return count($this->requests);
+        return \count($this->requests);
     }
 
     /**
@@ -96,8 +96,8 @@ class AsyncRequest
             throw new Exception('No requests are running.');
         }
 
-        while (curl_multi_exec($this->handle, $runningCount) === CURLM_CALL_MULTI_PERFORM);
-        curl_multi_select($this->handle, $timeout);
+        while (\curl_multi_exec($this->handle, $runningCount) === CURLM_CALL_MULTI_PERFORM);
+        \curl_multi_select($this->handle, $timeout);
     }
 
     /**
@@ -105,7 +105,7 @@ class AsyncRequest
      */
     public function processCompleted(): void
     {
-        while ($info = curl_multi_info_read($this->handle)) {
+        while ($info = \curl_multi_info_read($this->handle)) {
             $this->callCallback($info);
         }
     }
@@ -122,12 +122,12 @@ class AsyncRequest
         $request = $requestCallback->getRequest();
         $handle = $request->getHandle();
 
-        curl_multi_remove_handle($this->handle, $handle);
+        \curl_multi_remove_handle($this->handle, $handle);
         unset($this->requests[$uuid]);
 
         $callback = $requestCallback->getCallback();
         if ($callback !== null) {
-            $curlResponse = curl_multi_getcontent($handle);
+            $curlResponse = \curl_multi_getcontent($handle);
             $callback($request->createResponse($curlResponse), $this);
         }
 
@@ -144,7 +144,7 @@ class AsyncRequest
         if (!$this->queue->isEmpty() && $freeSlots) {
             $uuid = $this->queue->extract();
             $request = $this->requests[$uuid]->getRequest();
-            curl_multi_add_handle($this->handle, $request->getHandle());
+            \curl_multi_add_handle($this->handle, $request->getHandle());
             $this->runningCount++;
         }
     }
