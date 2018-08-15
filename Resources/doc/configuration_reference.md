@@ -69,7 +69,7 @@ sfynx_circuit_breaker:
             reset_time: 30
 ```
 
-Take a look at [SfynxCircuitBreakerBundle](https://github.com/pigroupe/SfynxCircuitBreakerBundle/blob/master/Resources/doc/index) for more informations.
+Take a look at [SfynxCircuitBreakerBundle](https://github.com/pigroupe/SfynxCircuitBreakerBundle/blob/master/Resources/doc/index.md) for more informations.
 
 Then reference it:
 ```yaml
