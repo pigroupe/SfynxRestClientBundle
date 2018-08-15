@@ -40,7 +40,7 @@ class Request implements RequestInterface
      */
     public function setOption(int $curlOption, $value): void
     {
-        curl_setopt($this->handle, $curlOption, $value);
+        \curl_setopt($this->handle, $curlOption, $value);
     }
 
     /**
@@ -59,16 +59,16 @@ class Request implements RequestInterface
      */
     public function createResponse(string $curlResponse)
     {
-        $error = curl_error($this->handle);
+        $error = \curl_error($this->handle);
         $error = $error === '' ? null : $error;
 
-        $httpCode = curl_getinfo($this->handle, CURLINFO_HTTP_CODE);
+        $httpCode = \curl_getinfo($this->handle, CURLINFO_HTTP_CODE);
 
-        $headerSize = curl_getinfo($this->handle, CURLINFO_HEADER_SIZE);
-        $header = trim(substr($curlResponse, 0, $headerSize));
-        $headers = preg_split('~\r\n|\n|\r~', $header);
+        $headerSize = \curl_getinfo($this->handle, CURLINFO_HEADER_SIZE);
+        $header = \trim(\substr($curlResponse, 0, $headerSize));
+        $headers = \preg_split('~\r\n|\n|\r~', $header);
 
-        $body = substr($curlResponse, $headerSize);
+        $body = \substr($curlResponse, $headerSize);
 
         return new Response($this->url, $error, $httpCode, $headers, $body);
     }
@@ -79,7 +79,7 @@ class Request implements RequestInterface
     public function __destruct()
     {
         if (isset($this->handle)) {
-            curl_close($this->handle);
+            \curl_close($this->handle);
         }
     }
 }

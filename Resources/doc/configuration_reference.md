@@ -1,9 +1,14 @@
-SfynxRestClientBundle Configuration Reference
-=========================================
+# SfynxRestClientBundle Configuration Reference
 
+The following documents are available:
 
-Declare an API
---------------
+- [Declare an API](#declare-an-API)
+- [Define and use a cache provider (optional)](dDefine-and-use-a-cache-provider-(optional))
+- [Define and use circuit breaker provider (optional)](#define-and-use-circuit-breaker-provider-(optional))
+- [Setup the development environment (optional)](#detup-the-development-environment-(optional))
+- [A full configuration example](#a-full-configuration-example)
+
+## Declare an API
 
 ``` yaml
 # app/config/config.yml
@@ -27,9 +32,7 @@ sfynx_rest_client:
         #     ...
 ```
 
-
-Define and use a cache provider (optional)
-------------------------------------------
+## Define and use a cache provider (optional)
 
 First define a provider using doctrine_cache:
 ```yaml
@@ -38,11 +41,10 @@ First define a provider using doctrine_cache:
 doctrine_cache:
     providers:
         sfynx_rest_client:
-            memcache:
-                servers:
-                    memcached01:
-                        host: localhost
-                        port: 11211
+            predis:
+                host: sfynx_redis
+                port: 6379
+                database: 11
 ```
 
 Take a look at [DoctrineCacheBundle](https://github.com/doctrine/DoctrineCacheBundle) for more informations.
@@ -53,9 +55,31 @@ sfynx_rest_client:
     http_cacher: doctrine_cache.providers.sfynx_rest_client
 ```
 
+## Define and use circuit breaker provider (optional)
 
-Setup the development environment (optional)
---------------------------------------------
+First define a provider using doctrine_cache:
+```yaml
+# app/config/config.yml
+
+sfynx_circuit_breaker:
+    cache_dir: '/tmp/'
+    service_names:
+        cb_my_api:
+            max_failure: 5
+            reset_time: 30
+```
+
+Take a look at [SfynxCircuitBreakerBundle](https://github.com/pigroupe/SfynxCircuitBreakerBundle/blob/master/Resources/doc/index) for more informations.
+
+Then reference it:
+```yaml
+sfynx_rest_client:
+    api:
+        my_api:
+            circuit_breaker: 'cb_my_api'
+```
+
+## Setup the development environment (optional)
 
 In order to profile Api logs, enabled this feature:
 ```yaml
@@ -65,19 +89,26 @@ sfynx_rest_client:
     log_enabled: true
 ```
 
-
-A full configuration example
-----------------------------
+## A full configuration example
 
 ```yaml
+sfynx_circuit_breaker:
+    cache_dir: '/tmp/'
+    service_names:
+        cb_my_api:
+            max_failure: 5
+            reset_time: 30
+        cb_my_api2:
+            max_failure: 15
+            reset_time: 90
+
 doctrine_cache:
     providers:
         sfynx_rest_client:
-            memcache:
-                servers:
-                    memcached01:
-                        host: localhost
-                        port: 11211
+            predis:
+                host: sfynx_redis
+                port: 6379
+                database: 11
 
 sfynx_rest_client:
     log_enabled: false
@@ -86,11 +117,13 @@ sfynx_rest_client:
         my_api:
             endpoint_root:  %api.my_api.endpoint_root%
             security_token: %api.my_api.security_token%
+            circuit_breaker: 'cb_my_api'
             cache_enabled:  true
             client:
                 service: my_bundle.api.my_api
         my_api2:
             endpoint_root:  %api.my_api2.endpoint_root%
             security_token: %api.my_api2.security_token%
+            circuit_breaker: 'cb_my_api2'
             cache_enabled:  true
 ```
